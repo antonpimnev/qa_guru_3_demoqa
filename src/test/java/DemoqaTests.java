@@ -3,6 +3,8 @@ import com.codeborne.selenide.Configuration;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
+import java.io.File;
+
 import static com.codeborne.selenide.Condition.*;
 import static com.codeborne.selenide.Selenide.*;
 import static com.codeborne.selenide.Selectors.*;
@@ -45,6 +47,7 @@ public class DemoqaTests {
         $("#subjectsInput").setValue("Ну" + "приехали");
         $(byXpath("//label[contains(text(),'Sports')]")).click();
         $(byXpath("//label[contains(text(),'Music')]")).click();
+        $("#uploadPicture").uploadFile(new File("src/resources/1.png"));
         $("#currentAddress").sendKeys("Test"+"123");
         $("#react-select-3-input").sendKeys("ncr");
         $("#react-select-3-input").pressTab();
