@@ -20,9 +20,11 @@ public class DemoqaTests {
     @Test
     void fillFormTest() {
         //consts
-        String userName = "Anton";
-        String userNumber = "586526411577";
+        String userFirstName = "Anton";
+        String userLastName = "Pimnev";
+        String userNumber = "5865264115";
         String userEmail = "anton.pimnev@pochta.com";
+        String address = "Test 123";
 
         //preconditions
         open("/automation-practice-form");
@@ -30,13 +32,15 @@ public class DemoqaTests {
         executeJavaScript("$('#fixedban').remove()");
 
         //actions
-        $("#firstName").setValue(userName);
-        $("#lastName").setValue("Pimnev");
+        $("#firstName").setValue(userFirstName);
+        $("#lastName").setValue(userLastName);
         $("#userEmail").setValue(userEmail);
         $(byXpath("//label[contains(text(),'Male')]")).click();
         $("#userNumber").setValue(userNumber);
         $("#dateOfBirthInput").click();
         $(byXpath("//option[contains(text(),'2000')]")).click();
+        $("[class=react-datepicker__month-select]").click();
+        $("[class=react-datepicker__month-select]").selectOption("September");
         $(byXpath("//div[contains(text(),'10')]")).click();
 
         //or
@@ -44,11 +48,12 @@ public class DemoqaTests {
         //$(".react-datepicker__year-select").selectOption("1995");
         //$(".react-datepicker__day--009:not(.react-datepicker__day--outside-month)").click();
 
-        $("#subjectsInput").setValue("Ну" + "приехали");
+        $("#subjectsInput").sendKeys("Acc");
+        $("#subjectsInput").pressTab();
         $(byXpath("//label[contains(text(),'Sports')]")).click();
         $(byXpath("//label[contains(text(),'Music')]")).click();
-        $("#uploadPicture").uploadFile(new File("src/resources/1.png"));
-        $("#currentAddress").sendKeys("Test"+"123");
+        $("#uploadPicture").uploadFile(new File("src/test/resources/1.png"));
+        $("#currentAddress").setValue(address);
         $("#react-select-3-input").sendKeys("ncr");
         $("#react-select-3-input").pressTab();
         $("#react-select-4-input").sendKeys("delh");
@@ -56,7 +61,17 @@ public class DemoqaTests {
         $("#submit").click();
 
         //asserts
-        $(".modal-title").shouldHave(text("Thanks for submitting the form"));
-        $(byXpath("//td[contains(text(),'anton.pimnev@pochta.com')]")).shouldBe(Condition.visible);
+        $("[class=modal-content]").shouldHave(text("Thanks for submitting the form"));
+        $("[class=modal-content]").shouldBe(Condition.visible);
+        $(".table-responsive").shouldHave(text(userFirstName+" "+userLastName));
+        $("[class=modal-content]").shouldHave(text(userEmail));
+        $("[class=modal-content]").shouldHave(text("Male"));
+        $("[class=modal-content]").shouldHave(text(userNumber));
+        $("[class=modal-content]").shouldHave(text("10 September,2000"));
+        $("[class=modal-content]").shouldHave(text("Accounting"));
+        $("[class=modal-content]").shouldHave(text("Sports, Music"));
+        $("[class=modal-content]").shouldHave(text("1.png"));
+        $("[class=modal-content]").shouldHave(text(address));
+        $("[class=modal-content]").shouldHave(text("NCR Delhi"));
     }
 }
