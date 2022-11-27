@@ -25,31 +25,31 @@ public class DemoqaTests extends TestBase {
 
     @Test
     void fillFormTest() {
-        registrationPage.openPage().
-                setFirstName(userFirstName).
-                setLastName(userLastName).
-                setEmail(userEmail).
-                setGender(userGender).
-                setUserNumber(userNumber).
-                setBDate(userBDay, userBMonth, userBYear).
-                setSubject(userSubject).
-                setHobbies(userHobbies).
-                uploadPicture(userPicture).
-                setAdress(userAddress).
-                setState(userState).
-                setCity(userCity).
-                clickSubmit().
-                verifyResultsModalAppears().
-                verifyResult("Student Name", userFirstName+" "+userLastName).
-                verifyResult("Student Email", userEmail).
-                verifyResult("Gender", userGender).
-                verifyResult("Mobile", userNumber).
-                verifyResult("Date of Birth", userBDay+ " " +userBMonth +"," +userBYear).
-                verifyResult("Subjects", userSubject).
-                verifyResult("Hobbies", userHobbies).
-                verifyResult("Picture", userPictureResult).
-                verifyResult("Address", userAddress).
-                verifyResult("State and City", userState+" "+userCity).
-                clickClose();
+        registrationPage.openPage()
+                .setFirstName(userFirstName)
+                .setLastName(userLastName)
+                .setEmail(userEmail)
+                .setGender(userGender)
+                .setUserNumber(userNumber)
+                .setBDate(userBDay, userBMonth, userBYear)
+                .setSubject(userSubject)
+                .setHobbies(userHobbies)
+                .uploadPicture(userPicture)
+                .setAdress(userAddress)
+                .setState(userState)
+                .setCity(userCity)
+                .clickSubmit()
+                .verifyResultsModalAppears()
+                .verifyResult("Student Name", userFirstName+" "+userLastName)
+                .verifyResult("Student Email", userEmail)
+                .verifyResult("Gender", userGender)
+                .verifyResult("Mobile", userNumber)
+                .verifyResult("Date of Birth", userBDay+ " " +userBMonth +"," +userBYear)
+                .verifyResult("Subjects", userSubject)
+                .verifyResult("Hobbies", userHobbies)
+                .verifyResult("Picture", userPictureResult)
+                .verifyResult("Address", userAddress)
+                .verifyResult("State and City", userState+" "+userCity)
+                .clickClose();
     }
 }
