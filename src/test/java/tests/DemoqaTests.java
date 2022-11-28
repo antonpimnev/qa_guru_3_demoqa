@@ -1,55 +1,40 @@
 package tests;
 import org.junit.jupiter.api.Test;
 import pages.RegistrationPage;
+import testdata.TestData;
 
 public class DemoqaTests extends TestBase {
 
     RegistrationPage registrationPage = new RegistrationPage();
-
-    //consts
-    String userFirstName = "Anton",
-            userLastName = "Pimnev",
-            userEmail = "anton.pimnev@pochta.com",
-            userGender = "Male",
-            userNumber = "5865264115",
-            userBDay = "10",
-            userBMonth = "September",
-            userBYear = "2000",
-            userSubject = "Accounting",
-            userHobbies = "Sports",
-            userPicture = "src/test/resources/1.png",
-            userPictureResult = "1.png",
-            userAddress = "Moscow 1",
-            userState = "NCR",
-            userCity = "Delhi";
+    TestData testData = new TestData();
 
     @Test
     void fillFormTest() {
         registrationPage.openPage()
-                .setFirstName(userFirstName)
-                .setLastName(userLastName)
-                .setEmail(userEmail)
-                .setGender(userGender)
-                .setUserNumber(userNumber)
-                .setBDate(userBDay, userBMonth, userBYear)
-                .setSubject(userSubject)
-                .setHobbies(userHobbies)
-                .uploadPicture(userPicture)
-                .setAdress(userAddress)
-                .setState(userState)
-                .setCity(userCity)
+                .setFirstName(testData.userFirstName)
+                .setLastName(testData.userLastName)
+                .setEmail(testData.userEmail)
+                .setGender(testData.userGender)
+                .setUserNumber(testData.userNumber)
+                .setBDate(testData.userBDay, testData.userBMonth, testData.userBYear)
+                .setSubject(testData.userSubject)
+                .setHobbies(testData.userHobbies)
+                .uploadPicture(testData.userPicture)
+                .setAdress(testData.userAddress)
+                .setState(testData.userState)
+                .setCity(testData.userCity)
                 .clickSubmit()
                 .verifyResultsModalAppears()
-                .verifyResult("Student Name", userFirstName+" "+userLastName)
-                .verifyResult("Student Email", userEmail)
-                .verifyResult("Gender", userGender)
-                .verifyResult("Mobile", userNumber)
-                .verifyResult("Date of Birth", userBDay+ " " +userBMonth +"," +userBYear)
-                .verifyResult("Subjects", userSubject)
-                .verifyResult("Hobbies", userHobbies)
-                .verifyResult("Picture", userPictureResult)
-                .verifyResult("Address", userAddress)
-                .verifyResult("State and City", userState+" "+userCity)
+                .verifyResult("Student Name", testData.userFirstName+" "+testData.userLastName)
+                .verifyResult("Student Email", testData.userEmail)
+                .verifyResult("Gender", testData.userGender)
+                .verifyResult("Mobile", testData.userNumber)
+                .verifyResult("Date of Birth", testData.userBDay+ " " +testData.userBMonth +"," +testData.userBYear)
+                .verifyResult("Subjects", testData.userSubject)
+                .verifyResult("Hobbies", testData.userHobbies)
+                .verifyResult("Picture", testData.userPictureResult)
+                .verifyResult("Address", testData.userAddress)
+                .verifyResult("State and City", testData.userState+" "+testData.userCity)
                 .clickClose();
     }
 }

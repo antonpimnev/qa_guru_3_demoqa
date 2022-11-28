@@ -6,7 +6,6 @@ import pages.components.PictureUploader;
 import pages.components.RegistrationResultsModal;
 
 import static com.codeborne.selenide.Selectors.byText;
-import static com.codeborne.selenide.Selectors.byXpath;
 import static com.codeborne.selenide.Selenide.*;
 
 public class RegistrationPage {
@@ -18,7 +17,7 @@ public class RegistrationPage {
     private SelenideElement firstNameInput = $("#firstName");
     private SelenideElement lastNameInput = $("#lastName");
     private SelenideElement userEmailInput = $("#userEmail");
-    private SelenideElement genderRadioButtons = $(byXpath("//label[contains(text(),'Male')]"));
+    private SelenideElement genderRadioButtons = $x("//div[@id='genterWrapper']");
     private SelenideElement userNumberInput = $("#userNumber");
     private SelenideElement userBDayInput = $("#dateOfBirthInput");
     private SelenideElement subjectsInput = $("#subjectsInput");
